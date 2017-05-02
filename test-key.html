@@ -5,15 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
         <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
         <script>
             $(function() {
-                $.getJSON('https://runkit.io/nicoschmitt/5908ae2ff7686600121f9c3f/branches/master/latest?format=jsonp&callback=?')
-                .done(data => {
-                    console.log(data);
-                    $('.loading').hide();
-                    $('#android').text(data.android);
-                    $('#ios').text(data.ios);
-                    $('.result').show();
+                $("#submit").click(function() {
+                    $('.result').hide();
+                    $(".loading").show();
+                    let key = $('#hash').val();
+                    $.getJSON(`https://runkit.io/nicoschmitt/api-version/1.1.0/testkey/${key}?format=jsonp&callback=?`)
+                    .done(data => {
+                        console.log(data);
+                        if (data.valid) {
+                            $('.result').text('valid for ' + moment.utc(+data.expiration * 1000).toNow(true));
+                        } else {
+                            $('.result').text('invalid');
+                        }
+                        $('.loading').hide();
+                        $('.result').show();
+                    });
                 });
             });
         </script>
@@ -26,23 +35,93 @@
             }
             .main {
                 margin: 200px auto;
-                width: 300px;
+                width: 50%;
                 text-align: center;
             }
+            .info {
+                margin-top: 1em;
+            }
             .loading {
-                font-size: 5em;
+                font-size: 2em;
             }
             .result {
-                font-size: 2em;
+                font-size: 1.5em;
+            }
+        </style>
+        <style type="text/css">
+            input[type=text], 
+            input[type=date],
+            input[type=datetime],
+            input[type=number],
+            input[type=search],
+            input[type=time],
+            input[type=url],
+            input[type=email],
+            textarea, 
+            select{
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                border:1px solid #BEBEBE;
+                padding: 7px;
+                margin:0px;
+                -webkit-transition: all 0.30s ease-in-out;
+                -moz-transition: all 0.30s ease-in-out;
+                -ms-transition: all 0.30s ease-in-out;
+                -o-transition: all 0.30s ease-in-out;
+                outline: none;  
+            }
+            input[type=text]:focus, 
+            input[type=date]:focus,
+            input[type=datetime]:focus,
+            input[type=number]:focus,
+            input[type=search]:focus,
+            input[type=time]:focus,
+            input[type=url]:focus,
+            input[type=email]:focus,
+            textarea:focus, 
+            select:focus{
+                -moz-box-shadow: 0 0 8px #88D5E9;
+                -webkit-box-shadow: 0 0 8px #88D5E9;
+                box-shadow: 0 0 8px #88D5E9;
+                border: 1px solid #88D5E9;
+            }
+            .field-divided{
+                width: 49%;
+            }
+
+            .field-long{
+                width: 100%;
+            }
+            .field-select{
+                width: 100%;
+            }
+            .field-textarea{
+                height: 100px;
+            }
+            input[type=submit], input[type=button]{
+                background: #4B99AD;
+                padding: 8px 15px 8px 15px;
+                border: none;
+                color: #fff;
+            }
+            input[type=submit]:hover, input[type=button]:hover{
+                background: #4691A4;
+                box-shadow:none;
+                -moz-box-shadow:none;
+                -webkit-box-shadow:none;
             }
         </style>
     </head>
     <body>
         <div class="main">
-            <div class='loading'>loading...</div>
-            <div class='result' style='display:none'>
-                <p>Android <span id='android'></span></p>
-                <p>iOS <span id='ios'></span></p>
+            <input type="text" placeholder="hash key" id="hash" name="hash" class="field-divided" />
+            <input type="submit" id="submit" value="Submit" />
+            <div class="info">
+                <div class="loading" style="display:none">loading...</div>
+                <div class="result" style="display:none">
+                    
+                </div>
             </div>
         </div>
     </body>
