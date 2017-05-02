@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>nico</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+        <script>
+            $(function() {
+                $.getJSON('https://runkit.io/nicoschmitt/5908ae2ff7686600121f9c3f/branches/master/latest?format=jsonp&callback=?')
+                .done(data => {
+                    console.log(data);
+                    $('.loading').hide();
+                    $('#android').text(data.android);
+                    $('#ios').text(data.ios);
+                    $('.result').show();
+                });
+            });
+        </script>
+        <style>
+            html, body {
+                background-color: #333;
+                color: #eee;
+                font-family: Roboto;
+                margin: 0;
+            }
+            .main {
+                margin: 200px auto;
+                width: 300px;
+                text-align: center;
+            }
+            .loading {
+                font-size: 5em;
+            }
+            .result {
+                font-size: 2em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class='loading'>loading...</div>
+            <div class='result' style='display:none'>
+                <p>Android <span id='android'></span></p>
+                <p>iOS <span id='ios'></span></p>
+            </div>
+        </div>
+    </body>
+</html>
