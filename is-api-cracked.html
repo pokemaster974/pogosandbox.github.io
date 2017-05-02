@@ -7,12 +7,9 @@
         <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
         <script>
             $(function() {
-                $.getJSON('https://runkit.io/nicoschmitt/5908ae2ff7686600121f9c3f/branches/master/api?format=jsonp&callback=?')
+                $.getJSON('https://runkit.io/nicoschmitt/5908ae2ff7686600121f9c3f/branches/master/iscracked?format=jsonp&callback=?')
                 .done(data => {
-                    $('.loading').hide();
-                    $('#android').text(data.android);
-                    $('#ios').text(data.ios);
-                    $('.result').show();
+                    $('.main').text(data ? "yes" : "no");
                 });
             });
         </script>
@@ -27,22 +24,11 @@
                 margin: 200px auto;
                 width: 300px;
                 text-align: center;
-            }
-            .loading {
                 font-size: 5em;
-            }
-            .result {
-                font-size: 2em;
             }
         </style>
     </head>
     <body>
-        <div class="main">
-            <div class='loading'>loading...</div>
-            <div class='result' style='display:none'>
-                <p>Android <span id='android'></span></p>
-                <p>iOS <span id='ios'></span></p>
-            </div>
-        </div>
+        <div class="main">loading...</div>
     </body>
 </html>
