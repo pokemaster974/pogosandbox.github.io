@@ -12,11 +12,11 @@
                     $('.result').hide();
                     $(".loading").show();
                     let key = $('#hash').val();
-                    $.getJSON(`https://runkit.io/nicoschmitt/api-version/1.1.0/testkey/${key}?format=jsonp&callback=?`)
+                    $.getJSON(`https://runkit.io/nicoschmitt/api-version/2.0.1/testkey/${key}?format=jsonp&callback=?`)
                     .done(data => {
                         console.log(data);
                         if (data.valid) {
-                            $('.result').text('valid for ' + moment.utc(+data.expiration * 1000).toNow(true));
+                            $('.result').text(data.rpm + ' rpm key valid for ' + moment.utc(+data.expiration * 1000).toNow(true));
                         } else {
                             $('.result').text('invalid');
                         }
