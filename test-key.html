@@ -2,8 +2,10 @@
 <html lang="en">
     <head>
         <title>test api key</title>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" crossorigin="anonymous">
         <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
         <script>
@@ -34,8 +36,7 @@
                 margin: 0;
             }
             .main {
-                margin: 200px auto;
-                width: 50%;
+                margin-top: 10em;
                 text-align: center;
             }
             .info {
@@ -115,13 +116,17 @@
         </style>
     </head>
     <body>
-        <div class="main">
-            <input type="text" placeholder="hash key" id="hash" name="hash" class="field-divided" />
-            <input type="submit" id="submit" value="Submit" />
-            <div class="info">
-                <div class="loading" style="display:none">loading...</div>
-                <div class="result" style="display:none">
-                    
+        <div class="container main">
+            <div class="row align-items-center align-self-center">
+                <div class="col col-sm-12 align-self-center">
+                    <input type="text" placeholder="hash key" id="hash" name="hash" class="field-divided" />
+                    <input type="submit" id="submit" value="Submit" />
+                    <div class="info">
+                        <div class="loading" style="display:none">loading...</div>
+                        <div class="result" style="display:none">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

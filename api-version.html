@@ -2,8 +2,10 @@
 <html lang="en">
     <head>
         <title>latest version</title>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" crossorigin="anonymous">
         <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
         <script>
             $(function() {
@@ -24,12 +26,11 @@
                 margin: 0;
             }
             .main {
-                margin: 200px auto;
-                width: 300px;
+                margin-top: 7em;
                 text-align: center;
             }
             .loading {
-                font-size: 5em;
+                font-size: 4em;
             }
             .result {
                 font-size: 2em;
@@ -37,7 +38,7 @@
         </style>
     </head>
     <body>
-        <div class="main">
+        <div class="container main">
             <div class='loading'>loading...</div>
             <div class='result' style='display:none'>
                 <p>Android <span id='android'></span></p>
