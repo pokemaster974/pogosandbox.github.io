@@ -18,9 +18,9 @@
                     .done(data => {
                         console.log(data);
                         if (data.valid) {
-                            $('.result').text(data.rpm + ' rpm key valid for ' + moment.utc(+data.expiration * 1000).toNow(true));
+                            $('.result').text(data.rpm + ' rpm - expiration le ' + moment(+data.expiration * 1000).format('DD/MM/YYYY HH:mm:ss'));
                         } else {
-                            $('.result').text('invalid');
+                            $('.result').text('invalide');
                         }
                         $('.loading').hide();
                         $('.result').show();
@@ -120,9 +120,9 @@
             <div class="row align-items-center align-self-center">
                 <div class="col col-sm-12 align-self-center">
                     <input type="text" placeholder="hash key" id="hash" name="hash" class="field-divided" />
-                    <input type="submit" id="submit" value="Submit" />
+                    <input type="submit" id="submit" value="Soumettre" />
                     <div class="info">
-                        <div class="loading" style="display:none">loading...</div>
+                        <div class="loading" style="display:none">lecture...</div>
                         <div class="result" style="display:none">
                             
                         </div>
